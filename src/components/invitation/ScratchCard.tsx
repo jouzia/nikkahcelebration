@@ -77,11 +77,9 @@ export function ScratchCard() {
   return (
     <div className="relative w-full max-w-md mx-auto h-56 rounded-2xl overflow-hidden glass-card">
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
-        <p className="font-cinzel text-xs text-[color:var(--gold-deep)] mb-3">THE BIG DAY</p>
-        <p className="font-serif-display text-2xl text-[color:var(--ink)]">Sunday, 5th July 2026</p>
-        <p className="font-cormorant text-lg text-[color:var(--ink)]/80 mt-1">10:30 AM – 11:30 AM</p>
-        <div className="my-2 h-px w-16 bg-gradient-gold" />
-        <p className="font-cinzel text-xs text-[color:var(--gold-deep)]">SPS MAHAL · CUDDALORE</p>
+        <p className="font-serif-display text-2xl md:text-3xl text-[color:var(--ink)]">SUNDAY 5th JULY 2026</p>
+        <div className="my-3 h-px w-16 bg-gradient-gold" />
+        <p className="font-cormorant text-xl text-[color:var(--ink)]/85">10:30 AM – 11:30 AM</p>
       </div>
       <canvas
         ref={canvasRef}
