@@ -22,7 +22,7 @@ export function FlowingLeaves() {
     resize();
     window.addEventListener("resize", resize);
 
-    const palette = ["#d4a857", "#e8c876", "#f0d18a", "#c9a875", "#a8b89a", "#8fa482"];
+    const palette = ["#ffb3c7", "#ff9bb3", "#f7c5d1", "#ffd1dc", "#f5d3a8", "#d4a857", "#e8a9b8"];
     const leaves: Leaf[] = Array.from({ length: 35 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
