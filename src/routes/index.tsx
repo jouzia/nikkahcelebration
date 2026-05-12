@@ -20,21 +20,7 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-function Index() {
-  const [opened, setOpened] = useState(false);
-
-  return (
-    <div className="relative min-h-screen bg-gradient-rose paper-grain overflow-hidden">
-      <FlowingLeaves />
-      <Doors opened={opened} onOpen={() => setOpened(true)} />
-      <MusicToggle active={opened} />
-
-      <motion.main
-        initial={{ opacity: 0 }}
-        animate={{ opacity: opened ? 1 : 0 }}
-        transition={{ delay: opened ? 1.2 : 0, duration: 0.8 }}
-        className="relative z-20 max-w-3xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-32"
-      >
+      
         {/* Hero */}
         <header className="text-center space-y-4 mb-12">
           <p className="font-cinzel text-[10px] md:text-xs text-[color:var(--gold-deep)] shimmer">✦ Wedding Invitation - Nikkah ✦</p>
@@ -130,11 +116,10 @@ function Index() {
         </section>
 
         {/* Footer */}
-        <ffooterclassName="text-center pt-8">
+        <footerclassName="text-center pt-8">
           <p className="font-script text-4xl md:text-6xl text-gold leading-tight float-slow">Your presence is our blessing</p>
           <div className="h-px w-24 bg-gradient-gold mx-auto my-6" />
-          << className="font-cinzel text-[10px] text-[color:var(--gold-deep)]">TAYYIBA &amp; MOHAMED · CUDDALORE · 2026</p>
-        </footer>
+          </footer>
       </motion.main>
     </div>
   );
