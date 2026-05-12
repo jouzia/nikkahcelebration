@@ -8,6 +8,7 @@ import { WordReveal } from "@/components/invitation/WordReveal";
 import { ScratchCard } from "@/components/invitation/ScratchCard";
 import { Countdown } from "@/components/invitation/Countdown";
 import { CardStack } from "@/components/invitation/CardStack";
+import { MusicToggle } from "@/components/invitation/MusicToggle";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -26,6 +27,7 @@ function Index() {
     <div className="relative min-h-screen bg-gradient-rose paper-grain overflow-hidden">
       <FlowingLeaves />
       <Doors opened={opened} onOpen={() => setOpened(true)} />
+      <MusicToggle active={opened} />
 
       <motion.main
         initial={{ opacity: 0 }}
@@ -47,19 +49,36 @@ function Index() {
           <HeartParticles />
         </section>
 
-        {/* Names large */}
-        <section className="text-center mb-20">
-          <p className="font-script text-5xl md:text-7xl text-gold leading-tight">Tayyiba <span className="font-cormorant italic text-3xl md:text-4xl text-[color:var(--rose-deep)]">&amp;</span> Mohamed</p>
-          <div className="h-px w-24 bg-gradient-gold mx-auto my-4" />
-          <p className="font-cinzel text-xs text-[color:var(--gold-deep)]">A NIKKAH CELEBRATION · 05 · 07 · 2026</p>
+        {/* Section 1 — Spiritual */}
+        <section className="glass-card rounded-3xl p-8 md:p-12 mb-10 text-center">
+          <p className="font-cinzel text-[10px] text-[color:var(--gold-deep)] mb-5 tracking-widest">✦ IN THE NAME OF ALLAH ✦</p>
+          <p className="font-serif-display text-2xl md:text-3xl text-gold mb-5">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+          <WordReveal
+            className="font-cormorant italic text-lg md:text-xl text-[color:var(--ink)]/85 leading-relaxed"
+            text="All praise to the Allah, the most beneficent, the most merciful and may Allah's blessings be upon Prophet Mohammed (S.A.W), his family and companions."
+          />
         </section>
 
-        {/* Invitation text */}
-        <section className="glass-card rounded-3xl p-8 md:p-12 mb-16">
-          <p className="font-cinzel text-[10px] text-[color:var(--gold-deep)] text-center mb-6">THE INVITATION</p>
+        {/* Section 2 — The Invitation */}
+        <section className="glass-card rounded-3xl p-8 md:p-12 mb-10 text-center">
+          <p className="font-cinzel text-[10px] text-[color:var(--gold-deep)] mb-5 tracking-widest">✦ THE INVITATION ✦</p>
           <WordReveal
-            className="font-cormorant text-lg md:text-xl text-[color:var(--ink)]/85 leading-relaxed text-center"
-            text="All praise to the Allah, the most beneficent, the most merciful and may Allah's blessings be upon Prophet Mohammed (S.A.W), his family and companions. Mrs. & Mr. S. Habeeb Mohiaddin Basha, MCA., M.Com., A.O, BSNL, Cuddalore, Solicit your esteemed presence and blessings with family on the auspicious occasion of the marriage (Nikkah) of their daughter H. TAYYIBA NASREEN, B.B.M with M. MOHAMED AZHARUDEEN, M.Sc., P.G.D.A.T, S/o. Late Janab A. Mohamed Moinudeen & Janaba M. Fathima Jan."
+            className="font-serif-display text-lg md:text-xl text-[color:var(--ink)] leading-relaxed mb-4"
+            text="Mrs. & Mr. S. Habeeb Mohiaddin Basha, MCA., M.Com., A.O, BSNL, Cuddalore."
+          />
+          <div className="h-px w-16 bg-gradient-gold mx-auto my-4" />
+          <WordReveal
+            className="font-cormorant italic text-lg md:text-xl text-[color:var(--ink)]/85 leading-relaxed"
+            text="Solicit your esteemed presence and blessings with family on the auspicious occasion of the marriage (Nikkah) of their daughter."
+          />
+        </section>
+
+        {/* Section 3 — The Couple */}
+        <section className="glass-card rounded-3xl p-8 md:p-12 mb-16 text-center">
+          <p className="font-cinzel text-[10px] text-[color:var(--gold-deep)] mb-5 tracking-widest">✦ THE COUPLE ✦</p>
+          <WordReveal
+            className="font-serif-display text-xl md:text-2xl text-[color:var(--rose-deep)] leading-relaxed"
+            text="H. TAYYIBA NASREEN, B.B.M with M. MOHAMED AZHARUDEEN, M.Sc., P.G.D.A.T, S/o. Late Janab A. Mohamed Moinudeen & Janaba M. Fathima Jan."
           />
         </section>
 
