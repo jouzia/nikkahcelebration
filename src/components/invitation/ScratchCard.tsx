@@ -10,13 +10,13 @@ export function ScratchCard() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d", { willReadFrequently: true })!; // Optimization forgetImageData
+    const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
     
-    // Use offset size for crisp rendering
+    // Set internal dimensions to match display size
     const w = canvas.width = canvas.offsetWidth;
     const h = canvas.height = canvas.offsetHeight;
 
-    // 1. Create the Gold Foil Texture
+    // Fill with Gold Foil
     const grad = ctx.createLinearGradient(0, 0, w, h);
     grad.addColorStop(0, "#d4a857");
     grad.addColorStop(0.5, "#f5e0a8");
@@ -24,108 +24,120 @@ export function ScratchCard() {
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, w, h);
 
-    // 2. Add the UI Text on top of the foil
+    // Overlay Text
     ctx.fillStyle = "rgba(255,255,255,0.7)";
     ctx.font = "600 16px 'Cinzel', serif";
     ctx.textAlign = "center";
-    ctx.fillText("✦  SCRATCH TO REVEAL  ✦", w / 2, h / 2 + 6);
+    ctx.fillText("✦ SCRATCH TO REVEAL ✦", w / 2, h / 2 + 5);
 
-    // 3. Set up the "Eraser" mode
     ctx.globalCompositeOperation = "destination-out";
-
-    const scratch = (x: number, y: number) => {
-      ctx.beginPath();
-      ctx.arc(x, y, 32, 0, Math.PI * 2); // Slightly larger brush for better UX
-      ctx.fill();
-      checkProgress();
-    };
 
     const checkProgress = () => {
       if (fired.current) return;
       
-      const data = ctx.getImageData(0, 0, w, h).data;
-      let cleared = 0;
-      
-      // Sample every 20th pixel for better accuracy than 40
-      for (let i = 3; i < data.length; i += 20) {
-        if (data[i] === 0) cleared++;
+      const imageData = ctx.getImageData(0, 0, w, h);
+      const pixels = imageData.data;
+      let transparentPixels = 0;
+
+      // Sample every 32nd pixel (Alpha channel is the 4th index)
+      for (let i = 3; i < pixels.length; i += 32) {
+        if (pixels[i] === 0) transparentPixels++;
       }
 
-      const totalSamples = data.length / 20;
-      if (cleared / totalSamples > 0.5) {
+      const percentage = (transparentPixels / (pixels.length / 32)) * 100;
+
+      // TRIGGER AT 50%
+      if (percentage >= 50) {
         fired.current = true;
         setRevealed(true);
-
-        // PARTY POPPERS TRIGGER
-        // Center Burst
-        confetti({
-          particleCount: 180,
-          spread: 100,
-          origin: { y: 0.6 },
-          colors: ["#d4a857", "#ffc0cb", "#f5e0a8", "#ff9bb0", "#b8862f"],
-          scalar: 1.2
-        });
-
-        // Side Cannons for that "Eye-Opening" moment
-        setTimeout(() => {
-          confetti({ 
-            particleCount: 80, angle: 60, spread: 55, origin: { x: 0, y: 0.8 }, 
-            colors: ["#d4a857", "#ffc0cb"] 
-          });
-        }, 150);
-
-        setTimeout(() => {
-          confetti({ 
-            particleCount: 80, angle: 120, spread: 55, origin: { x: 1, y: 0.8 }, 
-            colors: ["#d4a857", "#ffc0cb"] 
-          });
-        }, 300);
+        triggerPartyPoppers();
       }
     };
 
-    // Input Handling
-    const pos = (e: MouseEvent | TouchEvent) => {
-      const r = canvas.getBoundingClientRect();
-      const t = "touches" in e ? e.touches[0] : (e as MouseEvent);
-      return { x: t.clientX - r.left, y: t.clientY - r.top };
+    const triggerPartyPoppers = () => {
+      // Main Center Burst
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ["#d4a857", "#ffc0cb", "#f5e0a8", "#ff9bb0"],
+        zIndex: 999,
+      });
+
+      // Left Cannon
+      setTimeout(() => {
+        confetti({
+          particleCount: 80,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0, y: 0.8 },
+          colors: ["#d4a857", "#ffc0cb"],
+        });
+      }, 200);
+
+      // Right Cannon
+      setTimeout(() => {
+        confetti({
+          particleCount: 80,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 0.8 },
+          colors: ["#d4a857", "#ffc0cb"],
+        });
+      }, 400);
     };
 
-    const down = (e: MouseEvent | TouchEvent) => { isDown.current = true; const p = pos(e); scratch(p.x, p.y); };
-    const move = (e: MouseEvent | TouchEvent) => { 
-        if (!isDown.current) return; 
-        if (e.cancelable) e.preventDefault(); 
-        const p = pos(e); 
-        scratch(p.x, p.y); 
+    const scratch = (x: number, y: number) => {
+      ctx.beginPath();
+      ctx.arc(x, y, 35, 0, Math.PI * 2); // Larger brush for easier scratching
+      ctx.fill();
+      checkProgress();
     };
-    const up = () => { isDown.current = false; };
 
-    canvas.addEventListener("mousedown", down);
-    canvas.addEventListener("mousemove", move);
-    window.addEventListener("mouseup", up);
-    canvas.addEventListener("touchstart", down, { passive: false });
-    canvas.addEventListener("touchmove", move, { passive: false });
-    window.addEventListener("touchend", up);
+    // Input Events
+    const handleMove = (e: MouseEvent | TouchEvent) => {
+      if (!isDown.current) return;
+      if (e.cancelable) e.preventDefault();
+      const rect = canvas.getBoundingClientRect();
+      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+      const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+      scratch(clientX - rect.left, clientY - rect.top);
+    };
+
+    const handleDown = (e: MouseEvent | TouchEvent) => {
+      isDown.current = true;
+      handleMove(e);
+    };
+
+    const handleUp = () => (isDown.current = false);
+
+    canvas.addEventListener("mousedown", handleDown);
+    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("mouseup", handleUp);
+    canvas.addEventListener("touchstart", handleDown, { passive: false });
+    window.addEventListener("touchmove", handleMove, { passive: false });
+    window.addEventListener("touchend", handleUp);
 
     return () => {
-      canvas.removeEventListener("mousedown", down);
-      canvas.removeEventListener("mousemove", move);
-      window.removeEventListener("mouseup", up);
-      canvas.removeEventListener("touchstart", down);
-      canvas.removeEventListener("touchmove", move);
-      window.removeEventListener("touchend", up);
+      canvas.removeEventListener("mousedown", handleDown);
+      window.removeEventListener("mousemove", handleMove);
+      window.removeEventListener("mouseup", handleUp);
+      canvas.removeEventListener("touchstart", handleDown);
+      window.removeEventListener("touchmove", handleMove);
+      window.removeEventListener("touchend", handleUp);
     };
   }, []);
 
   return (
-    <div className="relative w-full max-w-sm mx-auto h-48 rounded-3xl overflow-hidden glass-card shadow-2xl border-4 border-white">
-      {/* THE REVEALED CONTENT */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-[#fffcf5]">
+    <div className="relative w-full max-w-sm mx-auto h-48 rounded-3xl overflow-hidden glass-card shadow-2xl border-2 border-white/50">
+      {/* Revealed Content (Date/Time) */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-[#fffcf5] p-4">
         <p className="font-serif-display text-2xl text-[color:var(--rose-deep)] font-bold">SUNDAY 5th JULY 2026</p>
-        <div className="my-2 h-[1px] w-12 bg-[#d4af37]/30" />
+        <div className="my-2 h-[1px] w-12 bg-gold/30" />
         <p className="font-serif text-lg text-[color:var(--rose-deep)]/80">10:30 AM – 11:30 AM</p>
       </div>
 
-      {/* THE SCRATCHABLE OVERLAY */}
+      {/* The Scratch Canvas */}
       <canvas
         ref={canvasRef}
         className={`absolute inset-0 w-full h-full cursor-crosshair transition-opacity duration-1000 ${
