@@ -4,6 +4,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Inter:wght@300;400;500&family=Cinzel:wght@400;600&display=swap');
+
 /*
  * Design system definition.
  *
@@ -63,8 +65,18 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.985 0.012 50);
+  --foreground: oklch(0.28 0.05 25);
+  --gold: oklch(0.78 0.12 80);
+  --gold-deep: oklch(0.62 0.14 70);
+  --rose: oklch(0.88 0.06 20);
+  --rose-deep: oklch(0.72 0.12 15);
+  --cream: oklch(0.96 0.02 70);
+  --ink: oklch(0.25 0.04 30);
+  --gradient-gold: linear-gradient(135deg, #d4a857 0%, #f5e0a8 50%, #b8862f 100%);
+  --gradient-rose: linear-gradient(135deg, #fff5f7 0%, #ffe8ec 100%);
+  --shadow-elegant: 0 20px 60px -20px oklch(0.62 0.14 70 / 0.3);
+  --shadow-door: 0 30px 80px -10px rgba(80, 40, 20, 0.4);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
