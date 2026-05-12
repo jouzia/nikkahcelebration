@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Tayyiba & Mohamed · Nikkah Invitation · 5 July 2026" },
+      { title: "Nikkah Invitation" },
       { name: "description", content: "With heartfelt joy, we invite you to the Nikkah of Tayyiba Nasreen and Mohamed Azharudeen — Sunday, 5th July 2026, SPS Mahal, Cuddalore." },
     ],
   }),
@@ -37,11 +37,7 @@ function Index() {
       >
         {/* Hero */}
         <header className="text-center space-y-4 mb-12">
-          <p className="font-cinzel text-[10px] md:text-xs text-[color:var(--gold-deep)] shimmer">✦ TOGETHER WITH OUR FAMILIES ✦</p>
-          <p className="font-serif-display text-3xl md:text-4xl text-gold">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
-          <p className="font-cormorant italic text-base md:text-lg text-[color:var(--ink)]/70">
-            We joyfully invite you to celebrate the<br/>blessed union of two souls
-          </p>
+          <p className="font-cinzel text-[10px] md:text-xs text-[color:var(--gold-deep)] shimmer">✦ Wedding Invitation - Nikkah ✦</p>
         </header>
 
         {/* Heart */}
@@ -59,28 +55,59 @@ function Index() {
           />
         </section>
 
-        {/* Section 2 — The Invitation */}
-        <section className="glass-card rounded-3xl p-8 md:p-12 mb-10 text-center">
-          <p className="font-cinzel text-[10px] text-[color:var(--gold-deep)] mb-5 tracking-widest">✦ THE INVITATION ✦</p>
-          <WordReveal
-            className="font-serif-display text-lg md:text-xl text-[color:var(--ink)] leading-relaxed mb-4"
-            text="Mrs. & Mr. S. Habeeb Mohiaddin Basha, MCA., M.Com., A.O, BSNL, Cuddalore."
-          />
-          <div className="h-px w-16 bg-gradient-gold mx-auto my-4" />
-          <WordReveal
-            className="font-cormorant italic text-lg md:text-xl text-[color:var(--ink)]/85 leading-relaxed"
-            text="Solicit your esteemed presence and blessings with family on the auspicious occasion of the marriage (Nikkah) of their daughter."
-          />
-        </section>
+        {/* {/* Section 2 — The Invitation */}
+<section className="glass-card rounded-3xl p-8 md:p-12 mb-10 text-center">
+  <p className="font-cinzel text-[10px] text-[color:var(--gold-deep)] mb-5 tracking-widest">✦ THE INVITATION ✦</p>
+  
+  <WordReveal
+    className="font-serif-display text-lg md:text-xl text-[color:var(--ink)] leading-relaxed mb-6"
+    text="Mrs. & Mr. S. Habeeb Mohiaddin Basha, MCA., M.Com., A.O, BSNL, Cuddalore."
+  />
+  
+  <WordReveal
+    className="font-serif italic text-base text-[color:var(--ink)]/80 mb-4"
+    text="Solicit your esteemed presence and blessings with family on the auspicious occasion of the marriage (Nikkah) of their daughter"
+  />
 
-        {/* Section 3 — The Couple */}
-        <section className="glass-card rounded-3xl p-8 md:p-12 mb-16 text-center">
-          <p className="font-cinzel text-[10px] text-[color:var(--gold-deep)] mb-5 tracking-widest">✦ THE COUPLE ✦</p>
-          <WordReveal
-            className="font-serif-display text-xl md:text-2xl text-[color:var(--rose-deep)] leading-relaxed"
-            text="H. TAYYIBA NASREEN, B.B.M with M. MOHAMED AZHARUDEEN, M.Sc., P.G.D.A.T, S/o. Late Janab A. Mohamed Moinudeen & Janaba M. Fathima Jan."
-          />
-        </section>
+  <div className="h-px w-16 bg-gradient-gold mx-auto my-8" />
+
+  {/* THE COUPLE BURIED INSIDE FOR BETTER FLOW */}
+  <p className="font-cinzel text-[10px] text-[color:var(--gold-deep)] mb-8 tracking-widest uppercase">✦ The Couple ✦</p>
+  
+  <div className="flex flex-col items-center space-y-6 text-center">
+    {/* BRIDE */}
+    <WordReveal
+      className="font-serif-display text-4xl md:text-6xl text-[color:var(--rose-deep)] font-bold tracking-tight"
+      text="H. TAYYIBA NASREEN, B.B.M"
+    />
+
+    {/* THE CONNECTOR */}
+    <motion.div 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      className="font-serif italic text-2xl text-[color:var(--rose-deep)]/60 py-2"
+    >
+      with
+    </motion.div>
+
+    {/* GROOM */}
+    <WordReveal
+      className="font-serif-display text-4xl md:text-6xl text-[color:var(--rose-deep)] font-bold tracking-tight"
+      text="M. MOHAMED AZHARUDEEN, M.Sc., P.G.D.A.T"
+    />
+
+    {/* PARENTAGE */}
+    <div className="pt-10">
+      <div className="h-[1px] w-24 bg-[color:var(--rose-deep)]/20 mx-auto mb-4" />
+      <WordReveal
+        className="font-serif text-sm md:text-base text-[color:var(--rose-deep)] opacity-80 max-w-md mx-auto leading-relaxed"
+        text="S/o. Late Janab A. Mohamed Moinudeen & Janaba M. Fathima Jan."
+      />
+    </div>
+  </div>
+</section>
+
+{/* DELETE THE OLD SECTION 3 ENTIRELY TO AVOID REPETITION */}
 
         {/* Scratch reveal */}
         <section className="mb-20 text-center">
@@ -103,10 +130,10 @@ function Index() {
         </section>
 
         {/* Footer */}
-        <footer className="text-center pt-8">
+        <ffooterclassName="text-center pt-8">
           <p className="font-script text-4xl md:text-6xl text-gold leading-tight float-slow">Your presence is our blessing</p>
           <div className="h-px w-24 bg-gradient-gold mx-auto my-6" />
-          <p className="font-cinzel text-[10px] text-[color:var(--gold-deep)]">TAYYIBA &amp; MOHAMED · CUDDALORE · 2026</p>
+          << className="font-cinzel text-[10px] text-[color:var(--gold-deep)]">TAYYIBA &amp; MOHAMED · CUDDALORE · 2026</p>
         </footer>
       </motion.main>
     </div>
