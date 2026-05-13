@@ -23,7 +23,7 @@ export function HeartParticles() {
       return { x: cx + x * scale, y: cy - y * scale };
     };
 
-    const palette = ["#ff9bb0", "#ffc0cb", "#d4a857", "#f5d98a", "#ffb3c1", "#e8c876"];
+    const palette = ["#4169E1", "#6B8DEF", "#1E40AF", "#93C5FD", "#3B82F6", "#60A5FA"];
     const particles: P[] = [];
     for (let i = 0; i < 800; i++) {
       const t = (i / 800) * Math.PI * 2;
@@ -97,12 +97,14 @@ export function HeartParticles() {
   }, []);
 
   return (
-    <div className="relative mx-auto" style={{ width: 680, maxWidth: "100%" }}>
-      <canvas ref={canvasRef} className="block mx-auto" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-12 md:px-16 text-center">
-        <p className="font-script text-4xl md:text-5xl text-gold drop-shadow-[0_2px_6px_rgba(139,101,8,0.45)] leading-tight">Tayyiba Nasreen</p>
-        <p className="font-cinzel text-xs md:text-sm text-[color:var(--gold-deep)] my-2 tracking-widest">&amp;</p>
-        <p className="font-script text-4xl md:text-5xl text-gold drop-shadow-[0_2px_6px_rgba(139,101,8,0.45)] leading-tight">Mohamed Azharudeen</p>
+    <div className="relative w-full flex justify-center items-center">
+      <div className="relative" style={{ width: 680, maxWidth: "100%" }}>
+        <canvas ref={canvasRef} style={{ display: "block", margin: "0 auto" }} />
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-12 md:px-16 text-center">
+          <p className="font-script text-4xl md:text-5xl text-gold drop-shadow-[0_2px_6px_rgba(30,64,175,0.45)] leading-tight">Tayyiba Nasreen</p>
+          <p className="font-cinzel text-xs md:text-sm text-[color:var(--gold-deep)] my-2 tracking-widest">&amp;</p>
+          <p className="font-script text-4xl md:text-5xl text-gold drop-shadow-[0_2px_6px_rgba(30,64,175,0.45)] leading-tight">Mohamed Azharudeen</p>
+        </div>
       </div>
     </div>
   );
