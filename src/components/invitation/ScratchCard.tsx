@@ -46,8 +46,8 @@ export function ScratchCard() {
 
       const percentage = (transparentPixels / (pixels.length / 32)) * 100;
 
-      // TRIGGER AT 50%
-      if (percentage >= 50) {
+      // TRIGGER AT 20%
+      if (percentage >= 20) {
         fired.current = true;
         setRevealed(true);
         triggerPartyPoppers();
@@ -89,7 +89,7 @@ export function ScratchCard() {
 
     const scratch = (x: number, y: number) => {
       ctx.beginPath();
-      ctx.arc(x, y, 35, 0, Math.PI * 2); // Larger brush for easier scratching
+      ctx.arc(x, y, 45, 0, Math.PI * 2); // Larger brush for easier scratching
       ctx.fill();
       checkProgress();
     };
