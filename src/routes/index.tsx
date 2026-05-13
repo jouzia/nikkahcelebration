@@ -70,7 +70,7 @@ function Index() {
           
           <WordReveal
             className="font-serif-display text-lg md:text-xl text-[color:var(--ink)] leading-relaxed mb-6"
-            text="Mrs. & Mr. S. Habeeb Mohiaddin Basha, MCA., M.Com., A.O, BSNL, Cuddalore."
+            text="Mrs. & Mr. S. Habeeb Mohiaddin Basha."
           />
           
           <WordReveal
