@@ -97,13 +97,23 @@ export function HeartParticles() {
   }, []);
 
   return (
-    <div className="relative w-full flex justify-center items-center">
-      <div className="relative" style={{ width: 680, maxWidth: "100%" }}>
-        <canvas ref={canvasRef} style={{ display: "block", margin: "0 auto" }} />
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-12 md:px-16 text-center">
-          <p className="font-script text-4xl md:text-5xl text-gold drop-shadow-[0_2px_6px_rgba(30,64,175,0.45)] leading-tight">Tayyiba Nasreen</p>
-          <p className="font-cinzel text-xs md:text-sm text-[color:var(--gold-deep)] my-2 tracking-widest">&amp;</p>
-          <p className="font-script text-4xl md:text-5xl text-gold drop-shadow-[0_2px_6px_rgba(30,64,175,0.45)] leading-tight">Mohamed Azharudeen</p>
+    <div className="relative flex w-full items-center justify-center">
+      <div className="relative w-full max-w-[680px]">
+        <canvas
+          ref={canvasRef}
+          style={{ display: "block", marginLeft: "auto", marginRight: "auto", maxWidth: "100%" }}
+        />
+        <div
+          className="pointer-events-none absolute w-full max-w-[440px] px-10 text-center md:px-14"
+          style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
+        >
+          <p className="font-script text-4xl leading-tight text-gold drop-shadow-[0_2px_6px_rgba(30,64,175,0.45)] md:text-5xl">
+            Tayyiba Nasreen
+          </p>
+          <p className="my-2 font-cinzel text-xs tracking-widest text-[color:var(--gold-deep)] md:text-sm">&amp;</p>
+          <p className="font-script text-4xl leading-tight text-gold drop-shadow-[0_2px_6px_rgba(30,64,175,0.45)] md:text-5xl">
+            Mohamed Azharudeen
+          </p>
         </div>
       </div>
     </div>
