@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 
 export function Doors({ onOpen, opened }: { onOpen: () => void; opened: boolean }) {
+  // Using the gold hex consistently
+  const goldHex = "#D4AF37";
+
   return (
     <motion.div
       className="fixed inset-0 z-50 pointer-events-none"
@@ -25,8 +28,14 @@ export function Doors({ onOpen, opened }: { onOpen: () => void; opened: boolean 
       >
         <div className="absolute inset-6 border border-[color:var(--gold)]/40 rounded-sm" />
         <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 flex items-center justify-center">
-          <div className="w-32 h-32 md:w-44 md:h-44 rounded-full bg-gradient-gold shadow-[0_0_60px_rgba(212,168,87,0.6)] flex items-center justify-center">
-            <span className="font-serif-display text-5xl md:text-6xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] -mr-4">T</span>
+          {/* Changed bg to a subtle off-white to make the Gold 'T' pop */}
+          <div className="w-32 h-32 md:w-44 md:h-44 rounded-full bg-[#FFFCF8] border-2 border-[#D4AF37] shadow-[0_0_60px_rgba(212,168,87,0.4)] flex items-center justify-center">
+            <span 
+              className="font-serif-display text-5xl md:text-6xl drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)] -mr-4"
+              style={{ color: goldHex }}
+            >
+              T
+            </span>
           </div>
         </div>
       </motion.div>
@@ -40,8 +49,14 @@ export function Doors({ onOpen, opened }: { onOpen: () => void; opened: boolean 
       >
         <div className="absolute inset-6 border border-[color:var(--gold)]/40 rounded-sm" />
         <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 flex items-center justify-center">
-          <div className="w-32 h-32 md:w-44 md:h-44 rounded-full bg-gradient-gold shadow-[0_0_60px_rgba(212,168,87,0.6)] flex items-center justify-center">
-            <span className="font-serif-display text-5xl md:text-6xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] -ml-4">A</span>
+          {/* Changed bg to a subtle off-white to make the Gold 'A' pop */}
+          <div className="w-32 h-32 md:w-44 md:h-44 rounded-full bg-[#FFFCF8] border-2 border-[#D4AF37] shadow-[0_0_60px_rgba(212,168,87,0.4)] flex items-center justify-center">
+            <span 
+              className="font-serif-display text-5xl md:text-6xl drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)] -ml-4"
+              style={{ color: goldHex }}
+            >
+              A
+            </span>
           </div>
         </div>
       </motion.div>
@@ -55,7 +70,8 @@ export function Doors({ onOpen, opened }: { onOpen: () => void; opened: boolean 
           transition={{ delay: 1, duration: 0.8 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
-          className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 pointer-events-auto px-8 py-3 rounded-full bg-gradient-gold text-white font-cinzel text-xs md:text-sm shadow-[0_10px_40px_rgba(212,168,87,0.5)]"
+          className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 pointer-events-auto px-8 py-3 rounded-full border-2 border-[#D4AF37] bg-[#FFFCF8] font-cinzel text-xs md:text-sm shadow-[0_10px_40px_rgba(212,168,87,0.3)]"
+          style={{ color: goldHex }}
         >
           Open Invitation
         </motion.button>
