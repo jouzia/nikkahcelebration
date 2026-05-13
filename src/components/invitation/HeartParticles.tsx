@@ -11,7 +11,9 @@ export function HeartParticles() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
     const dpr = window.devicePixelRatio || 1;
-    const W = 680, H = 624;
+    
+    // Maintain the larger canvas size to prevent drifting
+    const W = 800, H = 750; 
     canvas.width = W * dpr; canvas.height = H * dpr;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.scale(dpr, dpr);
@@ -20,64 +22,53 @@ export function HeartParticles() {
     const heart = (t: number, scale: number) => {
       const x = 16 * Math.pow(Math.sin(t), 3);
       const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
-      return { x: cx + x * scale, y: cy - y * scale };
+      return { x: cx + x * scale * 1.5, y: cy - y * scale * 1.5 };
     };
 
-    const palette = ["#4169E1", "#6B8DEF", "#1E40AF", "#93C5FD", "#3B82F6", "#60A5FA"];
+    // Palette: Gold, Pink, and Green (as requested)
+    const palette = ["#D4AF37", "#FFD700", "#FFB6C1", "#FF69B4", "#4ADE80", "#22C55E"];
     const particles: P[] = [];
-    for (let i = 0; i < 800; i++) {
-      const t = (i / 800) * Math.PI * 2;
-      const jitter = 0.85 + Math.random() * 0.3;
+    for (let i = 0; i < 900; i++) {
+      const t = (i / 900) * Math.PI * 2;
+      const jitter = 0.85 + Math.random() * 0.4;
       const p = heart(t, 12 * jitter);
       particles.push({
         tx: p.x, ty: p.y,
-        x: cx + (Math.random() - 0.5) * 200,
-        y: cy + (Math.random() - 0.5) * 200,
+        x: cx + (Math.random() - 0.5) * 400,
+        y: cy + (Math.random() - 0.5) * 400,
         vx: 0, vy: 0,
-        size: 1 + Math.random() * 2,
+        size: 1.2 + Math.random() * 2.5,
         color: palette[Math.floor(Math.random() * palette.length)],
       });
     }
 
-    const start = performance.now();
     let raf = 0;
     const tick = (now: number) => {
-      const elapsed = (now - start) / 1000;
-      // Lub-dub heartbeat
-      const beat = elapsed % 1.2;
-      let scale = 1;
-      if (beat < 0.12) scale = 1 + Math.sin((beat / 0.12) * Math.PI) * 0.08;
-      else if (beat > 0.2 && beat < 0.36) scale = 1 + Math.sin(((beat - 0.2) / 0.16) * Math.PI) * 0.05;
-
-      ctx.fillStyle = "rgba(255,252,248,0.18)";
-      ctx.fillRect(0, 0, W, H);
+      ctx.clearRect(0, 0, W, H);
 
       particles.forEach((p) => {
-        const tx = cx + (p.tx - cx) * scale;
-        const ty = cy + (p.ty - cy) * scale;
-        let dx = tx - p.x;
-        let dy = ty - p.y;
-        // mouse repulsion
+        let dx = p.tx - p.x;
+        let dy = p.ty - p.y;
+        
         const mx = p.x - mouse.current.x;
         const my = p.y - mouse.current.y;
         const md = Math.hypot(mx, my);
-        if (md < 80 && md > 0) {
-          const f = (80 - md) / 80;
-          p.vx += (mx / md) * f * 0.8;
-          p.vy += (my / md) * f * 0.8;
+        if (md < 100 && md > 0) {
+          const f = (100 - md) / 100;
+          p.vx += (mx / md) * f * 1.5;
+          p.vy += (my / md) * f * 1.5;
         }
+        
         p.vx = (p.vx + dx * 0.05) * 0.85;
         p.vy = (p.vy + dy * 0.05) * 0.85;
         p.x += p.vx;
         p.y += p.vy;
+        
         ctx.beginPath();
         ctx.fillStyle = p.color;
-        ctx.shadowColor = p.color;
-        ctx.shadowBlur = 6;
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
       });
-      ctx.shadowBlur = 0;
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -97,21 +88,22 @@ export function HeartParticles() {
   }, []);
 
   return (
-    <div className="relative flex w-full items-center justify-center">
-      <div className="relative w-full max-w-[680px]">
+    <div className="relative flex w-full min-h-[750px] items-center justify-center">
+      <div className="relative flex items-center justify-center w-full">
         <canvas
           ref={canvasRef}
-          style={{ display: "block", marginLeft: "auto", marginRight: "auto", maxWidth: "100%" }}
+          className="mx-auto block max-w-full"
         />
         <div
-          className="pointer-events-none absolute w-full max-w-[440px] px-10 text-center md:px-14"
+          className="pointer-events-none absolute w-full text-center flex flex-col items-center justify-center"
           style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
         >
-          <p className="font-script text-4xl leading-tight text-gold drop-shadow-[0_2px_6px_rgba(30,64,175,0.45)] md:text-5xl">
+          {/* Names are now in Royal Blue (#4169E1) */}
+          <p className="font-script text-5xl leading-tight text-[#4169E1] drop-shadow-[0_2px_8px_rgba(255,255,255,0.8)] md:text-6xl">
             Tayyiba Nasreen
           </p>
-          <p className="my-2 font-cinzel text-xs tracking-widest text-[color:var(--gold-deep)] md:text-sm">&amp;</p>
-          <p className="font-script text-4xl leading-tight text-gold drop-shadow-[0_2px_6px_rgba(30,64,175,0.45)] md:text-5xl">
+          <p className="my-3 font-cinzel text-lg tracking-widest text-[#4169E1] md:text-xl">&amp;</p>
+          <p className="font-script text-5xl leading-tight text-[#4169E1] drop-shadow-[0_2px_8px_rgba(255,255,255,0.8)] md:text-6xl">
             Mohamed Azharudeen
           </p>
         </div>
