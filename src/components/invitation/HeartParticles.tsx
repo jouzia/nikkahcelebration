@@ -11,9 +11,7 @@ export function HeartParticles() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
     const dpr = window.devicePixelRatio || 1;
-    
-    // Increased Canvas dimensions to accommodate a larger heart
-    const W = 800, H = 750;
+    const W = 680, H = 624;
     canvas.width = W * dpr; canvas.height = H * dpr;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.scale(dpr, dpr);
@@ -22,23 +20,23 @@ export function HeartParticles() {
     const heart = (t: number, scale: number) => {
       const x = 16 * Math.pow(Math.sin(t), 3);
       const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
-      // Increased the multiplier to 18 to make the heart significantly larger
-      return { x: cx + x * scale * 1.5, y: cy - y * scale * 1.5 };
+      return { x: cx + x * scale, y: cy - y * scale };
     };
 
-    // Palette: Gold, Pink, and Green
-    const palette = ["#D4AF37", "#FFB6C1", "#4ADE80", "#FFD700", "#FF69B4", "#22C55E"];
+    // UPDATED PALETTE: Pink, Green, and Gold
+    const palette = ["#FF69B4", "#FFB6C1", "#4ADE80", "#22C55E", "#D4AF37", "#FFD700"];
+    
     const particles: P[] = [];
-    for (let i = 0; i < 900; i++) {
-      const t = (i / 900) * Math.PI * 2;
+    for (let i = 0; i < 800; i++) {
+      const t = (i / 800) * Math.PI * 2;
       const jitter = 0.85 + Math.random() * 0.3;
       const p = heart(t, 12 * jitter);
       particles.push({
         tx: p.x, ty: p.y,
-        x: cx + (Math.random() - 0.5) * 300,
-        y: cy + (Math.random() - 0.5) * 300,
+        x: cx + (Math.random() - 0.5) * 200,
+        y: cy + (Math.random() - 0.5) * 200,
         vx: 0, vy: 0,
-        size: 1.2 + Math.random() * 2.2,
+        size: 1 + Math.random() * 2,
         color: palette[Math.floor(Math.random() * palette.length)],
       });
     }
@@ -100,22 +98,22 @@ export function HeartParticles() {
   }, []);
 
   return (
-    <div className="relative flex w-full items-center justify-center min-h-[750px]">
-      <div className="relative w-full max-w-[800px]">
+    <div className="relative flex w-full items-center justify-center">
+      <div className="relative w-full max-w-[680px]">
         <canvas
           ref={canvasRef}
           style={{ display: "block", marginLeft: "auto", marginRight: "auto", maxWidth: "100%" }}
         />
         <div
-          className="pointer-events-none absolute w-full text-center"
+          className="pointer-events-none absolute w-full max-w-[440px] px-10 text-center md:px-14"
           style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
         >
-          {/* TEXT COLOR: Light Blue (#ADD8E6) */}
-          <p className="font-script text-5xl leading-tight text-[#ADD8E6] drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)] md:text-6xl">
+          {/* UPDATED TEXT COLOR: Royal Blue (#4169E1) */}
+          <p className="font-script text-4xl leading-tight text-[#4169E1] drop-shadow-[0_2px_6px_rgba(255,255,255,0.8)] md:text-5xl">
             Tayyiba Nasreen
           </p>
-          <p className="my-2 font-cinzel text-sm tracking-widest text-[#ADD8E6] md:text-lg">&amp;</p>
-          <p className="font-script text-5xl leading-tight text-[#ADD8E6] drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)] md:text-6xl">
+          <p className="my-2 font-cinzel text-xs tracking-widest text-[#4169E1] md:text-sm">&amp;</p>
+          <p className="font-script text-4xl leading-tight text-[#4169E1] drop-shadow-[0_2px_6px_rgba(255,255,255,0.8)] md:text-5xl">
             Mohamed Azharudeen
           </p>
         </div>
