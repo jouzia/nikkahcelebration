@@ -11,7 +11,7 @@ export function HeartParticles() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
     const dpr = window.devicePixelRatio || 1;
-    const W = 520, H = 480;
+    const W = 680, H = 624;
     canvas.width = W * dpr; canvas.height = H * dpr;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.scale(dpr, dpr);
@@ -25,10 +25,10 @@ export function HeartParticles() {
 
     const palette = ["#ff9bb0", "#ffc0cb", "#d4a857", "#f5d98a", "#ffb3c1", "#e8c876"];
     const particles: P[] = [];
-    for (let i = 0; i < 650; i++) {
-      const t = (i / 650) * Math.PI * 2;
+    for (let i = 0; i < 800; i++) {
+      const t = (i / 800) * Math.PI * 2;
       const jitter = 0.85 + Math.random() * 0.3;
-      const p = heart(t, 9 * jitter);
+      const p = heart(t, 12 * jitter);
       particles.push({
         tx: p.x, ty: p.y,
         x: cx + (Math.random() - 0.5) * 200,
@@ -97,12 +97,12 @@ export function HeartParticles() {
   }, []);
 
   return (
-    <div className="relative mx-auto" style={{ width: 520, maxWidth: "100%" }}>
+    <div className="relative mx-auto" style={{ width: 680, maxWidth: "100%" }}>
       <canvas ref={canvasRef} className="block mx-auto" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-        <p className="font-script text-3xl md:text-4xl text-gold drop-shadow-[0_2px_6px_rgba(212,168,87,0.4)]">Tayyiba Nasreen</p>
-        <p className="font-cinzel text-[10px] md:text-xs text-[color:var(--gold-deep)] my-1 tracking-widest">&amp;</p>
-        <p className="font-script text-3xl md:text-4xl text-gold drop-shadow-[0_2px_6px_rgba(212,168,87,0.4)]">Mohamed Azharudeen</p>
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-12 md:px-16 text-center">
+        <p className="font-script text-4xl md:text-5xl text-gold drop-shadow-[0_2px_6px_rgba(139,101,8,0.45)] leading-tight">Tayyiba Nasreen</p>
+        <p className="font-cinzel text-xs md:text-sm text-[color:var(--gold-deep)] my-2 tracking-widest">&amp;</p>
+        <p className="font-script text-4xl md:text-5xl text-gold drop-shadow-[0_2px_6px_rgba(139,101,8,0.45)] leading-tight">Mohamed Azharudeen</p>
       </div>
     </div>
   );
