@@ -74,7 +74,7 @@
   --blush: oklch(0.92 0.05 15);
   --cream: oklch(0.97 0.02 30);
   --ink: oklch(0.28 0.06 15);
-  --gradient-gold: linear-gradient(135deg, #d4a857 0%, #f5e0a8 50%, #b8862f 100%);
+  --gradient-gold: linear-gradient(135deg, #B8860B 0%, #8B6508 50%, #6b4f06 100%);
   --gradient-rose: linear-gradient(135deg, #fff0f4 0%, #ffd8e2 50%, #ffc1cf 100%);
   --gradient-pink-gold: linear-gradient(135deg, #ff9bb3 0%, #f5d3a8 50%, #d4a857 100%);
   --shadow-elegant: 0 20px 60px -20px oklch(0.62 0.14 70 / 0.3);
@@ -169,6 +169,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 0 rgba(60, 40, 0, 0.35);
 }
 
 .bg-gradient-gold { background: var(--gradient-gold); }
