@@ -39,29 +39,34 @@ function Index() {
         transition={{ delay: opened ? 1.2 : 0, duration: 0.8 }}
         className="relative z-20 max-w-3xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-32"
       >
-        {/* Hero */}
+        {/* Hero - Shiny Blue Header */}
         <header className="text-center space-y-4 mb-12">
           <p className="font-cinzel text-2xl md:text-5xl lg:text-6xl tracking-[0.3em] text-center leading-relaxed py-4 
-  bg-gradient-to-b from-[#1e3a8a] via-[#60a5fa] to-[#08143c] 
-  bg-clip-text text-transparent 
-  filter drop-shadow-[0_0_15px_rgba(65,105,225,0.4)] 
-  shimmer">
-  ✦ Wedding Celebration - Nikkah ✦
-</p>
+            bg-gradient-to-b from-[#1e3a8a] via-[#60a5fa] to-[#08143c] 
+            bg-clip-text text-transparent 
+            filter drop-shadow-[0_0_15px_rgba(65,105,225,0.4)] 
+            shimmer">
+            ✦ Wedding Celebration - Nikkah ✦
+          </p>
         </header>
 
-        {/* Heart */}
-        <section className="mb-16">
+        {/* Heart Particles Section with Bottom-Left Scroll Indicator */}
+        <section className="relative mb-16 min-h-[40vh] flex flex-col items-center justify-center">
           <HeartParticles />
+          
           {opened && (
-            <div className="mt-6 flex justify-start pl-2 md:pl-6">
+            <div 
+              className="absolute bottom-[-20px] left-0 md:left-4 z-30 cursor-pointer"
+              onClick={() => window.scrollTo({ top: 800, behavior: 'smooth' })}
+            >
+              {/* This ScrollIndicator should contain your horizontal "Swipe to Explore" text + arrow */}
               <ScrollIndicator />
             </div>
           )}
         </section>
 
         {/* Section 1 — Spiritual */}
-        <section className="glass-card rounded-3xl p-8 md:p-12 mb-10 text-center">
+        <section id="spiritual-start" className="glass-card rounded-3xl p-8 md:p-12 mb-10 text-center">
           <p className="font-cinzel text-[10px] text-[color:var(--gold-deep)] mb-5 tracking-widest uppercase">
             ✦ In the Name of Allah ✦
           </p>
@@ -97,45 +102,45 @@ function Index() {
           
           <div className="flex flex-col items-center space-y-6 text-center">
             {/* BRIDE */}
-<div className="flex flex-col items-center">
-  <WordReveal
-    className="font-serif-display text-4xl md:text-7xl text-[color:var(--rose-deep)] font-bold tracking-tight"
-    text="H. TAYYIBA NASREEN"
-  />
-  <motion.span 
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ delay: 0.5 }}
-    className="font-cinzel text-sm md:text-lg tracking-[0.2em] text-[color:var(--rose-deep)]/80 mt-1"
-  >
-    B.B.M
-  </motion.span>
-</div>
+            <div className="flex flex-col items-center">
+              <WordReveal
+                className="font-serif-display text-4xl md:text-7xl text-[color:var(--rose-deep)] font-bold tracking-tight"
+                text="H. TAYYIBA NASREEN"
+              />
+              <motion.span 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="font-cinzel text-sm md:text-lg tracking-[0.2em] text-[color:var(--rose-deep)]/80 mt-1"
+              >
+                B.B.M
+              </motion.span>
+            </div>
 
-{/* THE CONNECTOR */}
-<motion.div 
-  initial={{ opacity: 0 }}
-  whileInView={{ opacity: 1 }}
-  className="font-serif italic text-2xl text-[color:var(--rose-deep)]/60 py-4"
->
-  with
-</motion.div>
+            {/* THE CONNECTOR */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              className="font-serif italic text-2xl text-[color:var(--rose-deep)]/60 py-4"
+            >
+              with
+            </motion.div>
 
-{/* GROOM */}
-<div className="flex flex-col items-center">
-  <WordReveal
-    className="font-serif-display text-4xl md:text-7xl text-[color:var(--rose-deep)] font-bold tracking-tight"
-    text="M. MOHAMED AZHARUDEEN"
-  />
-  <motion.span 
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ delay: 0.5 }}
-    className="font-cinzel text-sm md:text-lg tracking-[0.2em] text-[color:var(--rose-deep)]/80 mt-1 text-center"
-  >
-    M.Sc., P.G.D.A.T
-  </motion.span>
-</div>
+            {/* GROOM */}
+            <div className="flex flex-col items-center">
+              <WordReveal
+                className="font-serif-display text-4xl md:text-7xl text-[color:var(--rose-deep)] font-bold tracking-tight"
+                text="M. MOHAMED AZHARUDEEN"
+              />
+              <motion.span 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="font-cinzel text-sm md:text-lg tracking-[0.2em] text-[color:var(--rose-deep)]/80 mt-1 text-center"
+              >
+                M.Sc., P.G.D.A.T
+              </motion.span>
+            </div>
 
             {/* PARENTAGE */}
             <div className="pt-10">
