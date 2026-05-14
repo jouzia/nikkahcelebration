@@ -41,10 +41,10 @@ function Index() {
       >
         {/* Hero */}
         <header className="text-center space-y-4 mb-12">
-          <p className="font-cinzel text-2xl md:text-5xl lg:text-6xl tracking-[0.2em] text-center leading-relaxed py-4 
-  bg-gradient-to-b from-[#5c4a1e] via-[#d4af37] to-[#3d3113] 
+          <p className="font-cinzel text-2xl md:text-5xl lg:text-6xl tracking-[0.3em] text-center leading-relaxed py-4 
+  bg-gradient-to-b from-[#1e3a8a] via-[#60a5fa] to-[#08143c] 
   bg-clip-text text-transparent 
-  filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] 
+  filter drop-shadow-[0_0_15px_rgba(65,105,225,0.4)] 
   shimmer">
   ✦ Wedding Celebration - Nikkah ✦
 </p>
