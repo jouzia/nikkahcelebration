@@ -9,6 +9,7 @@ import { ScratchCard } from "@/components/invitation/ScratchCard";
 import { Countdown } from "@/components/invitation/Countdown";
 import { CardStack } from "@/components/invitation/CardStack";
 import { MusicToggle } from "@/components/invitation/MusicToggle";
+import { ScrollIndicator } from "@/components/invitation/ScrollIndicator";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -31,6 +32,7 @@ function Index() {
       <FlowingLeaves />
       <Doors opened={opened} onOpen={() => setOpened(true)} />
       <MusicToggle active={opened} />
+      {opened && <ScrollIndicator />}
 
       <motion.main
         initial={{ opacity: 0 }}
