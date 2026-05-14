@@ -40,9 +40,9 @@ function Index() {
       >
         {/* Hero */}
         <header className="text-center space-y-4 mb-12">
-          <p className="font-cinzel text-[10px] md:text-xs text-[color:var(--gold-deep)] shimmer">
-            ✦ Wedding Celebration - Nikkah ✦
-          </p>
+          <p className="font-cinzel text-2xl md:text-5xl lg:text-6xl text-[color:var(--gold-deep)] shimmer tracking-[0.2em] text-center leading-relaxed py-4">
+  ✦ Wedding Celebration - Nikkah ✦
+</p>
         </header>
 
         {/* Heart */}
