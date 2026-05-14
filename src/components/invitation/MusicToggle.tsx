@@ -6,7 +6,7 @@ export function MusicToggle({ active }: { active: boolean }) {
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-    const a = new Audio("/background-music.mp3");
+    const a = new Audio("background-music.mp3");
     a.loop = true;
     a.volume = 0.45;
     audioRef.current = a;
@@ -15,7 +15,28 @@ export function MusicToggle({ active }: { active: boolean }) {
 
   useEffect(() => {
     if (!active || !audioRef.current) return;
-    audioRef.current.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+    const a = audioRef.current;
+    let started = false;
+    const tryPlay = () => {
+      a.play().then(() => { setPlaying(true); started = true; }).catch(() => {});
+    };
+    // Attempt immediately (in case autoplay is allowed)
+    tryPlay();
+    // Fallback: start on first user interaction (browser autoplay policy)
+    const onInteract = () => {
+      if (started) return;
+      a.play().then(() => { setPlaying(true); started = true; }).catch(() => {});
+      cleanup();
+    };
+    const cleanup = () => {
+      window.removeEventListener("click", onInteract);
+      window.removeEventListener("touchstart", onInteract);
+      window.removeEventListener("keydown", onInteract);
+    };
+    window.addEventListener("click", onInteract);
+    window.addEventListener("touchstart", onInteract);
+    window.addEventListener("keydown", onInteract);
+    return cleanup;
   }, [active]);
 
   const toggle = () => {
