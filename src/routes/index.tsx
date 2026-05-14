@@ -87,25 +87,45 @@ function Index() {
           
           <div className="flex flex-col items-center space-y-6 text-center">
             {/* BRIDE */}
-            <WordReveal
-              className="font-serif-display text-4xl md:text-6xl text-[color:var(--rose-deep)] font-bold tracking-tight"
-              text="H. TAYYIBA NASREEN, B.B.M"
-            />
+<div className="flex flex-col items-center">
+  <WordReveal
+    className="font-serif-display text-4xl md:text-7xl text-[color:var(--rose-deep)] font-bold tracking-tight"
+    text="H. TAYYIBA NASREEN"
+  />
+  <motion.span 
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ delay: 0.5 }}
+    className="font-cinzel text-sm md:text-lg tracking-[0.2em] text-[color:var(--rose-deep)]/80 mt-1"
+  >
+    B.B.M
+  </motion.span>
+</div>
 
-            {/* THE CONNECTOR */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              className="font-serif italic text-2xl text-[color:var(--rose-deep)]/60 py-2"
-            >
-              with
-            </motion.div>
+{/* THE CONNECTOR */}
+<motion.div 
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  className="font-serif italic text-2xl text-[color:var(--rose-deep)]/60 py-4"
+>
+  with
+</motion.div>
 
-            {/* GROOM */}
-            <WordReveal
-              className="font-serif-display text-4xl md:text-6xl text-[color:var(--rose-deep)] font-bold tracking-tight"
-              text="M. MOHAMED AZHARUDEEN, M.Sc., P.G.D.A.T"
-            />
+{/* GROOM */}
+<div className="flex flex-col items-center">
+  <WordReveal
+    className="font-serif-display text-4xl md:text-7xl text-[color:var(--rose-deep)] font-bold tracking-tight"
+    text="M. MOHAMED AZHARUDEEN"
+  />
+  <motion.span 
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ delay: 0.5 }}
+    className="font-cinzel text-sm md:text-lg tracking-[0.2em] text-[color:var(--rose-deep)]/80 mt-1 text-center"
+  >
+    M.Sc., P.G.D.A.T
+  </motion.span>
+</div>
 
             {/* PARENTAGE */}
             <div className="pt-10">
