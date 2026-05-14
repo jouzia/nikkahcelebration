@@ -6,12 +6,11 @@ export function ScrollIndicator() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 0.6, y: [0, -5, 0] }}
       transition={{
-        opacity: { delay: 1.5, duration: 1 },
+        opacity: { delay: 0.6, duration: 1 },
         y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
       }}
       whileHover={{ opacity: 1 }}
-      className="hidden md:flex fixed left-6 lg:left-8 top-1/2 -translate-y-1/2 z-30 flex-col items-center gap-4 pointer-events-auto"
-      style={{ opacity: 0.6 }}
+      className="flex flex-col items-center gap-4 pointer-events-auto"
     >
       <div className="flex flex-col items-center gap-[2px]">
         {"SCROLL TO EXPLORE".split("").map((ch, i) => (
