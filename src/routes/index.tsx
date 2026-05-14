@@ -32,7 +32,6 @@ function Index() {
       <FlowingLeaves />
       <Doors opened={opened} onOpen={() => setOpened(true)} />
       <MusicToggle active={opened} />
-      {opened && <ScrollIndicator />}
 
       <motion.main
         initial={{ opacity: 0 }}
@@ -52,6 +51,11 @@ function Index() {
         {/* Heart */}
         <section className="mb-16">
           <HeartParticles />
+          {opened && (
+            <div className="mt-6 flex justify-start pl-2 md:pl-6">
+              <ScrollIndicator />
+            </div>
+          )}
         </section>
 
         {/* Section 1 — Spiritual */}
