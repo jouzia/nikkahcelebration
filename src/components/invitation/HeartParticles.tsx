@@ -108,14 +108,18 @@ export function HeartParticles() {
           className="pointer-events-none absolute w-full max-w-[440px] px-10 text-center md:px-14"
           style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
         >
-          {/* UPDATED TEXT COLOR: Royal Blue (#4169E1) */}
-          <p className="font-script text-4xl leading-tight text-[#4169E1] drop-shadow-[0_2px_6px_rgba(255,255,255,0.8)] md:text-5xl">
-            Tayyiba Nasreen
-          </p>
-          <p className="my-2 font-cinzel text-xs tracking-widest text-[#4169E1] md:text-sm">&amp;</p>
-          <p className="font-script text-4xl leading-tight text-[#4169E1] drop-shadow-[0_2px_6px_rgba(255,255,255,0.8)] md:text-5xl">
-            Mohamed Azharudeen
-          </p>
+          {/* Names Section */}
+<div className="flex flex-col items-center justify-center gap-2 md:gap-4 my-6">
+  <p className="font-script text-6xl md:text-8xl leading-none text-[#4169E1] drop-shadow-[0_4px_8px_rgba(255,255,255,0.6)] text-center">
+    Tayyiba Nasreen
+  </p>
+  
+  <p className="font-cinzel text-xl md:text-2xl tracking-[0.3em] text-[#4169E1] opacity-80">&amp;</p>
+  
+  <p className="font-script text-6xl md:text-8xl leading-none text-[#4169E1] drop-shadow-[0_4px_8px_rgba(255,255,255,0.6)] text-center">
+    Mohamed Azharudeen
+  </p>
+</div>
         </div>
       </div>
     </div>
